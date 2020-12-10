@@ -25,16 +25,23 @@ print("Total: ", l)
 
 # part 2 
 
-print("Count before p2")
+print(f"Count before p2: {count}")
 for line in pws:
 	line[1] = line[1][0]
 	line[0] = [int(i) for i in line[0].split('-')]
 	line[2] = line[2][:-1]
 	char = line[1]
 	c_count = line[2].count(line[1])
-	f, s = line[0][0] + 1, line[0][1] + 1
+	f, s = line[0][0] - 1, line[0][1] - 1
 
-	if line[2][f] == char or line[2][s] == char:
+	# assign the chars to boolean vars
+	p1, p2 = line[2][f] == char, line[2][s] == char
+	# xor boolean vars
+	if p1 != p2:
+		print(f"str: {line[2]} idx1: {line[2][f]} == {char}?  idx2: {line[2][s]} == {char}?")
 		count += 1
 
+print(f"Count after: {count}")
+
+# correct answer 280
 
